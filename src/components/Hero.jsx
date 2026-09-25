@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowRight, BadgeCheck, Check, Store } from 'lucide-react'
+import { ArrowRight, Check, Store } from 'lucide-react'
 
 const EASE = [0.22, 1, 0.36, 1]
 
@@ -7,9 +7,11 @@ const HEADLINE_LINES = ['You have the idea.', "We'll help you figure out", 'what
 
 const ROADMAP_STEPS = [
   { label: 'Validate your idea', state: 'done' },
-  { label: 'Register business name', state: 'done' },
-  { label: 'CAC paperwork', state: 'active' },
-  { label: 'Launch plan', state: 'todo' },
+  { label: 'Understand your market', state: 'done' },
+  { label: 'Build your plan', state: 'active' },
+  { label: 'Learn what you need', state: 'todo' },
+  { label: 'Set up your business', state: 'todo' },
+  { label: 'Launch', state: 'todo' },
 ]
 
 function StepMarker({ state }) {
@@ -42,7 +44,7 @@ function RoadmapCard({ float }) {
           58%
         </span>
       </div>
-      <p className="mt-0.5 text-[11px] font-medium text-ink/55">Idea → Launch · 4 steps</p>
+      <p className="mt-0.5 text-[11px] font-medium text-ink/55">Idea → Launch · 6 steps</p>
       <ul className="mt-3 space-y-2">
         {ROADMAP_STEPS.map((step) => (
           <li
@@ -52,6 +54,7 @@ function RoadmapCard({ float }) {
             }`}
           >
             <StepMarker state={step.state} />
+            <span className="sr-only">{step.state === 'done' ? 'Done: ' : step.state === 'active' ? 'In progress: ' : 'Pending: '}</span>
             {step.label}
           </li>
         ))}
@@ -74,22 +77,38 @@ function ProfileCard({ float }) {
           <Store size={18} strokeWidth={1.9} />
         </span>
         <div className="min-w-0">
-          <p className="truncate font-display text-sm font-bold text-ivory">Adaeze Kitchen Ltd</p>
-          <p className="text-[11px] font-medium text-ivory/55">Food production · Lagos</p>
+          <p className="truncate font-display text-sm font-bold text-ivory">Business Profile</p>
+          <p className="text-[11px] font-medium text-ivory/55">Food Production</p>
+          <p className="text-[11px] font-medium text-ivory/55">Lagos Nigeria</p>
         </div>
       </div>
-      <div className="mt-3 flex items-center gap-1.5 border-t border-ivory/10 pt-3">
-        <BadgeCheck size={14} className="shrink-0 text-lime" />
-        <span className="text-[11px] font-medium text-ivory/75">CAC registered · RC 1842907</span>
+      <div className="mt-3 border-t border-ivory/10 pt-3">
+        <div className="flex items-center justify-between text-[11px] font-medium text-ivory/75">
+          <span>Setup progress</span>
+          <span className="text-lime">58%</span>
+        </div>
+        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ivory/10">
+          <div className="h-full w-[58%] rounded-full bg-lime" />
+        </div>
       </div>
-      <div className="mt-2.5 flex gap-2">
-        <span className="rounded-full bg-ivory/10 px-2.5 py-1 text-[10px] font-semibold text-ivory/70">
-          4.8 rating
-        </span>
-        <span className="rounded-full bg-ivory/10 px-2.5 py-1 text-[10px] font-semibold text-ivory/70">
-          120 orders/mo
-        </span>
-      </div>
+      <ul className="mt-3 space-y-2">
+        {[
+          { label: 'Business structure', done: true },
+          { label: 'Registration', done: true },
+          { label: 'Tax setup', done: false },
+          { label: 'Launch', done: false },
+        ].map((item) => (
+          <li key={item.label} className="flex items-center gap-2 text-[11px] font-medium text-ivory/75">
+            <span className="grid h-3.5 w-3.5 shrink-0 place-items-center rounded-full border border-ivory/25 text-lime">
+              {item.done && <Check size={10} strokeWidth={3} aria-hidden="true" />}
+            </span>
+            <span>{item.label}</span>
+            <span className={`ml-auto text-[10px] ${item.done ? 'text-lime' : 'text-ivory/45'}`}>
+              {item.done ? 'Done' : 'Pending'}
+            </span>
+          </li>
+        ))}
+      </ul>
     </motion.div>
   )
 }
@@ -114,7 +133,7 @@ export default function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-20 px-5 pb-24 pt-32 sm:px-8 lg:grid-cols-12 lg:gap-12 lg:pb-32 lg:pt-44">
         {/* Copy */}
-        <div className="lg:col-span-6">
+        <div className="min-w-0 [container-type:inline-size] lg:col-span-6">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -127,11 +146,11 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          <h1 className="mt-6 font-display text-[2.5rem] font-extrabold leading-[1.08] tracking-tight text-ivory sm:text-5xl xl:text-[3.75rem]">
+          <h1 className="mt-6 font-display text-[min(2.5rem,8cqw)] font-extrabold leading-[1.08] tracking-tight text-ivory sm:text-[min(3rem,8cqw)] xl:text-[min(3.75rem,8cqw)]">
             {HEADLINE_LINES.map((line, i) => (
               <span key={line} className="-mb-[0.12em] block overflow-hidden pb-[0.12em]">
                 <motion.span
-                  className={`block ${i === HEADLINE_LINES.length - 1 ? 'text-lime' : ''}`}
+                  className={`block whitespace-nowrap ${i === HEADLINE_LINES.length - 1 ? 'text-lime' : ''}`}
                   initial={{ y: '110%' }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 + i * 0.12, ease: EASE }}
