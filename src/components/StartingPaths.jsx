@@ -225,15 +225,15 @@ export default function StartingPaths() {
               </div>
 
               <div className="mt-auto pt-10">
-                <a
-                  href="#find-idea"
+                <button
+                  type="button"
                   className="group/cta inline-flex w-full items-center justify-between gap-3 rounded-full border border-ink/15 bg-forest-deep px-2 py-2 pl-7 text-[0.95rem] font-semibold text-ivory transition-all duration-300 hover:border-ink/25 hover:bg-forest sm:w-auto sm:justify-start"
                 >
                   <span>Find What Fits Me</span>
                   <span className="grid h-10 w-10 place-items-center rounded-full bg-apricot text-forest-deep transition-transform duration-300 group-hover/cta:translate-x-0.5">
                     <ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" />
                   </span>
-                </a>
+                </button>
                 <p className="mt-4 text-xs font-medium tracking-wide text-ink/40">
                   Personalized · Based on your profile
                 </p>
