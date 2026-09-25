@@ -14,7 +14,6 @@ import {
   Sliders,
   X,
   ChevronRight,
-  Sparkle,
 } from 'lucide-react'
 
 const EASE = [0.22, 1, 0.36, 1]
@@ -68,7 +67,9 @@ const RESULT_CARDS = [
   {
     id: 'creative-studio',
     title: 'Creative Studio',
-    matchScore: 98,
+    fitLabel: 'Strong Fit',
+    whyFits:
+      'Based on your graphic design skills, your ₦500,000 capital, and your preference for full-time work in Ibadan.',
     category: 'Design & Visual Identity',
     capitalRange: '₦350,000 – ₦450,000',
     launchTime: '2 – 3 weeks',
@@ -86,7 +87,9 @@ const RESULT_CARDS = [
   {
     id: 'digital-marketing',
     title: 'Digital Marketing Service',
-    matchScore: 94,
+    fitLabel: 'Good Fit',
+    whyFits:
+      'Based on your 2 years of graphic design experience, your ₦500,000 capital, and your location in Ibadan.',
     category: 'Growth & Social Retainers',
     capitalRange: '₦200,000 – ₦350,000',
     launchTime: '2 – 4 weeks',
@@ -104,7 +107,9 @@ const RESULT_CARDS = [
   {
     id: 'brand-agency',
     title: 'Brand & Content Agency',
-    matchScore: 91,
+    fitLabel: 'Good Fit',
+    whyFits:
+      'Based on your graphic design background, your full-time commitment, and your ₦500,000 capital in Ibadan.',
     category: 'Strategic Brand Partner',
     capitalRange: '₦400,000 – ₦500,000',
     launchTime: '4 – 6 weeks',
@@ -141,15 +146,7 @@ export default function OpportunityDiscovery() {
 
   // Modals & Interactive States
   const [selectedResult, setSelectedResult] = useState(null)
-  const [isOptionsModalOpen, setIsOptionsModalOpen] = useState(false)
   const [showProfileDrawer, setShowProfileDrawer] = useState(false)
-
-  // Interactive Customizer for "Discover Your Options"
-  const [customCapital, setCustomCapital] = useState('₦500,000')
-  const [customSkill, setCustomSkill] = useState('Graphic Design')
-  const [customLocation, setCustomLocation] = useState('Ibadan')
-  const [waitlistEmail, setWaitlistEmail] = useState('')
-  const [waitlistSubmitted, setWaitlistSubmitted] = useState(false)
 
   // Timer references for robust cleanup
   const timersRef = useRef([])
@@ -742,7 +739,7 @@ export default function OpportunityDiscovery() {
                                     : 'bg-apricot text-forest-deep'
                                 }`}
                               >
-                                {card.matchScore}% Match
+                                {card.fitLabel}
                               </span>
                             </div>
 
@@ -754,6 +751,16 @@ export default function OpportunityDiscovery() {
                             <p className="mt-3 text-xs leading-relaxed text-ivory/70 sm:text-[13px]">
                               {card.description}
                             </p>
+
+                            {/* Why this fits (reflects example profile inputs) */}
+                            <div className="mt-4 rounded-xl border border-lime/15 bg-lime/5 p-3">
+                              <p className="text-[10px] font-semibold uppercase tracking-wider text-lime/80">
+                                Why this fits
+                              </p>
+                              <p className="mt-1 text-xs leading-relaxed text-ivory/75">
+                                {card.whyFits}
+                              </p>
+                            </div>
 
                             {/* Key Metrics Pill Grid */}
                             <div className="mt-5 space-y-2 rounded-xl bg-forest-deep/80 p-3.5 border border-ivory/5 text-xs">
@@ -836,7 +843,7 @@ export default function OpportunityDiscovery() {
           >
             <button
               type="button"
-              onClick={() => setIsOptionsModalOpen(true)}
+              
               className="group inline-flex items-center justify-between gap-4 rounded-full bg-lime px-2 py-2 pl-8 font-display text-base font-bold text-forest-deep shadow-[0_12px_36px_-8px_rgba(217,244,58,0.35)] transition-all duration-300 hover:bg-lime/90 hover:shadow-[0_16px_44px_-6px_rgba(217,244,58,0.5)] hover:scale-[1.02] sm:text-lg"
             >
               <span>Discover Your Options →</span>
@@ -851,179 +858,6 @@ export default function OpportunityDiscovery() {
           </motion.div>
         </div>
       </div>
-
-      {/* Interactive Modal: Discover Your Options (Intake simulation) */}
-      <AnimatePresence>
-        {isOptionsModalOpen && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-title"
-          >
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOptionsModalOpen(false)}
-              className="absolute inset-0 bg-forest-deep/85 backdrop-blur-md"
-            />
-
-            {/* Modal Dialog */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3, ease: EASE }}
-              className="relative w-full max-w-lg rounded-3xl border border-ivory/20 bg-forest p-6 shadow-2xl sm:p-8"
-            >
-              <button
-                type="button"
-                onClick={() => setIsOptionsModalOpen(false)}
-                className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full bg-forest-deep text-ivory/70 transition-colors hover:bg-ivory/10 hover:text-ivory"
-                aria-label="Close dialog"
-              >
-                <X size={18} />
-              </button>
-
-              <div className="flex items-center gap-2.5">
-                <span className="grid h-8 w-8 place-items-center rounded-xl bg-lime text-forest-deep font-bold text-sm">
-                  <Sparkle size={16} />
-                </span>
-                <span className="text-xs font-semibold uppercase tracking-wider text-lime">
-                  Early Discovery Intake
-                </span>
-              </div>
-
-              <h3 id="modal-title" className="mt-3 font-display text-2xl font-bold text-ivory">
-                Discover Your Options
-              </h3>
-              <p className="mt-1 text-xs text-ivory/65 leading-relaxed">
-                Test how SnapBiz matches opportunities based on your personal starting parameters.
-              </p>
-
-              {/* Interactive Input Form */}
-              <div className="mt-6 space-y-4 text-left">
-                {/* Capital selector */}
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-ivory/70 mb-2">
-                    Available Starting Capital
-                  </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {['₦250,000', '₦500,000', '₦1,000,000+'].map((cap) => (
-                      <button
-                        key={cap}
-                        type="button"
-                        onClick={() => setCustomCapital(cap)}
-                        className={`rounded-xl py-2 px-3 text-xs font-semibold border transition-all ${
-                          customCapital === cap
-                            ? 'bg-lime text-forest-deep border-lime font-bold'
-                            : 'bg-forest-deep/60 border-ivory/10 text-ivory/80 hover:border-ivory/30'
-                        }`}
-                      >
-                        {cap}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Skill selector */}
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-ivory/70 mb-2">
-                    Primary Skill or Interest
-                  </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {['Graphic Design', 'Cooking / Food', 'Tech / Coding'].map((skill) => (
-                      <button
-                        key={skill}
-                        type="button"
-                        onClick={() => setCustomSkill(skill)}
-                        className={`rounded-xl py-2 px-2 text-xs font-semibold border truncate transition-all ${
-                          customSkill === skill
-                            ? 'bg-lime text-forest-deep border-lime font-bold'
-                            : 'bg-forest-deep/60 border-ivory/10 text-ivory/80 hover:border-ivory/30'
-                        }`}
-                      >
-                        {skill}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Location selector */}
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-ivory/70 mb-2">
-                    Your Location in Nigeria
-                  </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {['Ibadan', 'Lagos', 'Abuja'].map((loc) => (
-                      <button
-                        key={loc}
-                        type="button"
-                        onClick={() => setCustomLocation(loc)}
-                        className={`rounded-xl py-2 px-3 text-xs font-semibold border transition-all ${
-                          customLocation === loc
-                            ? 'bg-lime text-forest-deep border-lime font-bold'
-                            : 'bg-forest-deep/60 border-ivory/10 text-ivory/80 hover:border-ivory/30'
-                        }`}
-                      >
-                        {loc}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Early Access Notification */}
-                <div className="mt-6 rounded-2xl bg-forest-deep p-4 border border-ivory/10">
-                  <p className="text-xs font-medium text-ivory/80">
-                    Want an automated report when this feature launches?
-                  </p>
-                  {waitlistSubmitted ? (
-                    <div className="mt-2.5 flex items-center gap-2 text-xs font-semibold text-lime">
-                      <Check size={16} />
-                      You&apos;re on the priority notification list!
-                    </div>
-                  ) : (
-                    <form
-                      onSubmit={(e) => {
-                        e.preventDefault()
-                        if (waitlistEmail) setWaitlistSubmitted(true)
-                      }}
-                      className="mt-3 flex gap-2"
-                    >
-                      <input
-                        type="email"
-                        required
-                        value={waitlistEmail}
-                        onChange={(e) => setWaitlistEmail(e.target.value)}
-                        placeholder="Enter your email"
-                        className="flex-1 rounded-xl border border-ivory/15 bg-forest px-3.5 py-2 text-xs text-ivory placeholder-ivory/40 focus:border-lime focus:outline-none"
-                      />
-                      <button
-                        type="submit"
-                        className="rounded-xl bg-lime px-4 py-2 text-xs font-bold text-forest-deep transition-colors hover:bg-lime/90"
-                      >
-                        Notify Me
-                      </button>
-                    </form>
-                  )}
-                </div>
-              </div>
-
-              <div className="mt-6 flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => setIsOptionsModalOpen(false)}
-                  className="rounded-full bg-ivory/10 px-5 py-2 text-xs font-semibold text-ivory hover:bg-ivory/20"
-                >
-                  Done
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* Modal: Business Roadmap Preview */}
       <AnimatePresence>
@@ -1062,7 +896,7 @@ export default function OpportunityDiscovery() {
 
               <div className="flex items-center gap-2">
                 <span className="rounded-full bg-lime/20 px-2.5 py-0.5 text-[11px] font-bold text-lime border border-lime/30">
-                  {selectedResult.matchScore}% Match
+                  {selectedResult.fitLabel}
                 </span>
                 <span className="text-xs text-ivory/50">{selectedResult.category}</span>
               </div>
