@@ -2,6 +2,7 @@ import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import StartingPaths from './components/StartingPaths'
+import OpportunityDiscovery from './components/OpportunityDiscovery'
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <main>
         <Hero />
         <StartingPaths />
+        <OpportunityDiscovery />
       </main>
     </MotionConfig>
   )
