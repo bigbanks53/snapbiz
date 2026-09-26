@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { LogOut, Menu, X } from 'lucide-react'
+import { useAuth } from '../context/AuthContext'
 
 const NAV_LINKS = [
   { label: 'Discover', to: '/discover' },
@@ -15,8 +16,17 @@ const NAV_LINKS = [
 const EASE = [0.22, 1, 0.36, 1]
 
 export default function Navbar() {
+  const { user, loading: authLoading, signOut } = useAuth()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+
+  const email = user?.email ?? ''
+  const initial = email.charAt(0).toUpperCase() || 'S'
+
+  async function handleSignOut() {
+    setOpen(false)
+    await signOut()
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -96,20 +106,47 @@ export default function Navbar() {
 
         {/* Right actions */}
         <div className="hidden items-center gap-6 lg:flex">
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              `text-sm font-medium transition-colors ${isActive ? 'text-ivory' : 'text-ivory/70 hover:text-ivory'}`
-            }
-          >
-            Log in
-          </NavLink>
-          <Link
-            to="/get-started"
-            className="rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-forest-deep transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime/90"
-          >
-            Get Started
-          </Link>
+          {authLoading ? (
+            /* Reserve space while the session is being restored to avoid a flash */
+            <span aria-hidden="true" className="block h-9 w-56" />
+          ) : user ? (
+            <>
+              <span
+                title={email}
+                className="flex max-w-[13rem] items-center gap-2.5 text-sm font-medium text-ivory/70"
+              >
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-lime/15 text-xs font-bold text-lime">
+                  {initial}
+                </span>
+                <span className="truncate">{email}</span>
+              </span>
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="inline-flex items-center gap-2 rounded-full border border-ivory/25 px-5 py-2.5 text-sm font-semibold text-ivory transition-colors duration-200 hover:border-ivory/50 hover:bg-ivory/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime"
+              >
+                <LogOut size={15} strokeWidth={2} aria-hidden="true" />
+                Log out
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors ${isActive ? 'text-ivory' : 'text-ivory/70 hover:text-ivory'}`
+                }
+              >
+                Log in
+              </NavLink>
+              <Link
+                to="/get-started"
+                className="rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-forest-deep transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime/90"
+              >
+                Get Started
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -156,22 +193,42 @@ export default function Navbar() {
                 </motion.li>
               ))}
             </ul>
-            <div className="flex items-center gap-3 border-t border-ivory/10 px-5 py-5 sm:px-8">
-              <NavLink
-                to="/login"
-                onClick={() => setOpen(false)}
-                className="flex-1 rounded-full border border-ivory/25 px-5 py-3 text-center text-sm font-semibold text-ivory transition-colors hover:bg-ivory/5"
-              >
-                Log in
-              </NavLink>
-              <Link
-                to="/get-started"
-                onClick={() => setOpen(false)}
-                className="flex-1 rounded-full bg-lime px-5 py-3 text-center text-sm font-semibold text-forest-deep"
-              >
-                Get Started
-              </Link>
-            </div>
+            {!authLoading &&
+              (user ? (
+                <div className="space-y-4 border-t border-ivory/10 px-5 py-5 sm:px-8">
+                  <div className="flex min-w-0 items-center gap-2.5">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-lime/15 text-sm font-bold text-lime">
+                      {initial}
+                    </span>
+                    <span className="truncate text-sm font-medium text-ivory/70">{email}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleSignOut}
+                    className="flex w-full items-center justify-center gap-2 rounded-full bg-lime px-5 py-3 text-sm font-semibold text-forest-deep transition-colors hover:bg-lime/90"
+                  >
+                    <LogOut size={16} strokeWidth={2} aria-hidden="true" />
+                    Log out
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3 border-t border-ivory/10 px-5 py-5 sm:px-8">
+                  <NavLink
+                    to="/login"
+                    onClick={() => setOpen(false)}
+                    className="flex-1 rounded-full border border-ivory/25 px-5 py-3 text-center text-sm font-semibold text-ivory transition-colors hover:bg-ivory/5"
+                  >
+                    Log in
+                  </NavLink>
+                  <Link
+                    to="/get-started"
+                    onClick={() => setOpen(false)}
+                    className="flex-1 rounded-full bg-lime px-5 py-3 text-center text-sm font-semibold text-forest-deep"
+                  >
+                    Get Started
+                  </Link>
+                </div>
+              ))}
           </motion.div>
         )}
       </AnimatePresence>
