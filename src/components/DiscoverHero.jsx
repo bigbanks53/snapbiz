@@ -1,7 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import {
-  ArrowRight,
   Clock,
   MapPin,
   Palette,
@@ -11,8 +9,6 @@ import {
 } from 'lucide-react'
 
 const EASE = [0.22, 1, 0.36, 1]
-
-const MotionLink = motion.create(Link)
 
 // Example inputs that float around the central profile visual.
 const FLOAT_TAGS = [
@@ -229,30 +225,6 @@ export default function DiscoverHero() {
               that align with your situation.
             </motion.p>
 
-            {/* CTAs */}
-            <motion.div
-              {...rise(0.9)}
-              className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start"
-            >
-              <motion.a
-                href="#how-discovery-works"
-                whileHover={reduceMotion ? undefined : { y: -2 }}
-                whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-                className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-lime px-7 py-3.5 text-sm font-semibold text-forest-deep shadow-[0_12px_36px_-8px_rgba(217,244,58,0.35)] transition-colors hover:bg-lime/90 sm:w-auto sm:text-base"
-                aria-label="Start discovering — see how discovery works below"
-              >
-                Start Discovering
-                <ArrowRight size={18} strokeWidth={2.25} aria-hidden="true" />
-              </motion.a>
-              <MotionLink
-                to="/idea"
-                whileHover={reduceMotion ? undefined : { y: -2 }}
-                whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-                className="inline-flex w-full items-center justify-center rounded-full border border-ivory/25 px-7 py-3.5 text-sm font-semibold text-ivory transition-colors hover:border-ivory/50 hover:bg-ivory/5 sm:w-auto sm:text-base"
-              >
-                I Already Have an Idea
-              </MotionLink>
-            </motion.div>
           </div>
 
           {/* Visual with floating example inputs */}
