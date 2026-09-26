@@ -1,5 +1,8 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, Check, Store } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
+const MotionLink = motion.create(Link)
 
 const EASE = [0.22, 1, 0.36, 1]
 
@@ -177,15 +180,15 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 1, ease: EASE }}
             className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center"
           >
-            <motion.a
+            <MotionLink
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              href="#get-started"
+              to="/idea"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-lime px-7 py-3.5 text-sm font-semibold text-forest-deep transition-colors hover:bg-lime/90 sm:text-base"
             >
               I Have a Business Idea
               <ArrowRight size={18} strokeWidth={2.25} aria-hidden="true" />
-            </motion.a>
+            </MotionLink>
             <motion.a
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}

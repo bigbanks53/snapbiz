@@ -1,26 +1,30 @@
 import { MotionConfig } from 'framer-motion'
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import StartingPaths from './components/StartingPaths'
-import OpportunityDiscovery from './components/OpportunityDiscovery'
-import IdeaPage from './components/IdeaPage'
+import ScrollManager from './components/ScrollManager'
+import HomePage from './pages/HomePage'
+import IdeaPage from './pages/IdeaPage'
+
+function Layout() {
+  return (
+    <>
+      <ScrollManager />
+      <Navbar />
+      <Outlet />
+    </>
+  )
+}
 
 export default function App() {
-  // Lightweight path check: the /idea preview page renders its own sections.
-  const isIdeaPage = window.location.pathname.replace(/\/+$/, '') === '/idea'
-
   return (
     <MotionConfig reducedMotion="user">
-      <Navbar linkBase={isIdeaPage ? '/' : undefined} />
-      {isIdeaPage ? (
-        <IdeaPage />
-      ) : (
-        <main>
-          <Hero />
-          <StartingPaths />
-          <OpportunityDiscovery />
-        </main>
-      )}
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="idea" element={<IdeaPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
     </MotionConfig>
   )
 }

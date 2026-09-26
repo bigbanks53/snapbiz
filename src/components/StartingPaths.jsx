@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const EASE = [0.22, 1, 0.36, 1]
 
@@ -151,15 +152,15 @@ export default function StartingPaths() {
               </ul>
 
               <div className="mt-auto pt-10">
-                <a
-                  href="#start-with-idea"
+                <Link
+                  to="/idea"
                   className="group/cta inline-flex w-full items-center justify-between gap-3 rounded-full bg-lime px-2 py-2 pl-7 text-[0.95rem] font-semibold text-forest-deep transition-all duration-300 hover:bg-lime/90 hover:pr-2 sm:w-auto sm:justify-start"
                 >
                   <span>Start With My Idea</span>
                   <span className="grid h-10 w-10 place-items-center rounded-full bg-forest-deep text-lime transition-transform duration-300 group-hover/cta:translate-x-0.5">
                     <ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" />
                   </span>
-                </a>
+                </Link>
                 <p className="mt-4 text-xs font-medium tracking-wide text-ivory/40">
                   Takes ~3 minutes · No account required
                 </p>
