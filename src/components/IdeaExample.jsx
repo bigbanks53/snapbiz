@@ -250,6 +250,28 @@ export default function IdeaExample() {
             </div>
           </motion.div>
 
+          {/* ── How the roadmap is produced ── */}
+          <motion.div
+            {...reveal(0.13)}
+            className="relative overflow-hidden rounded-[2rem] border border-ink/10 bg-white/70 p-7 shadow-[0_32px_64px_-32px_rgba(24,51,47,0.18)] sm:p-9"
+          >
+            <div className="flex items-start gap-4">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-apricot/15 text-forest">
+                <Route size={18} strokeWidth={2} aria-hidden="true" />
+              </span>
+              <div className="min-w-0">
+                <h3 className="font-display text-lg font-[800] leading-snug tracking-[-0.02em] text-ink sm:text-xl">
+                  Your answers become your roadmap.
+                </h3>
+                <p className="mt-2.5 max-w-[46rem] text-[15px] leading-[1.75] text-ink/65 sm:text-base">
+                  As you clarify your idea, validate your assumptions, and identify what you
+                  need, SnapBiz turns those findings into a personalized path from idea to
+                  launch. The roadmap below is an example of what that path can look like.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
           {/* ── Condensed example roadmap ── */}
           <motion.div
             {...reveal(0.15)}
