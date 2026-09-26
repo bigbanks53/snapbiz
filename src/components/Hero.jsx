@@ -183,7 +183,7 @@ export default function Hero() {
             <MotionLink
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              to="/idea"
+              to="/get-started"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-lime px-7 py-3.5 text-sm font-semibold text-forest-deep transition-colors hover:bg-lime/90 sm:text-base"
             >
               I Have a Business Idea

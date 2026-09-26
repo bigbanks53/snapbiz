@@ -153,7 +153,7 @@ export default function StartingPaths() {
 
               <div className="mt-auto pt-10">
                 <Link
-                  to="/idea"
+                  to="/get-started"
                   className="group/cta inline-flex w-full items-center justify-between gap-3 rounded-full bg-lime px-2 py-2 pl-7 text-[0.95rem] font-semibold text-forest-deep transition-all duration-300 hover:bg-lime/90 hover:pr-2 sm:w-auto sm:justify-start"
                 >
                   <span>Start With My Idea</span>
