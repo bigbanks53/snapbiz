@@ -9,6 +9,8 @@ import HowItWorks from './pages/HowItWorks'
 import Learn from './pages/Learn'
 import Services from './pages/Services'
 import Consultants from './pages/Consultants'
+import Login from './pages/Login'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
@@ -23,8 +25,9 @@ export default function App() {
         <Route path="/learn" element={<Learn />} />
         <Route path="/services" element={<Services />} />
         <Route path="/consultants" element={<Consultants />} />
-        {/* Unknown paths keep the previous behaviour and fall back to the home page. */}
-        <Route path="*" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        {/* Only genuinely unknown URLs land here — every real route renders its own page. */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </MotionConfig>
   )

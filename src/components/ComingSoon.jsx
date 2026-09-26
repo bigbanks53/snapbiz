@@ -1,20 +1,14 @@
-import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
-const HOME_TITLE = 'SnapBiz — From Idea to Business'
 const EASE = [0.22, 1, 0.36, 1]
 
 /**
  * Simple placeholder for routes that do not have real content yet.
  * Renders the page name as a heading plus a "Coming soon" line.
  */
-export default function ComingSoon({ title }) {
-  useEffect(() => {
-    document.title = `${title} — Coming Soon | SnapBiz`
-    return () => {
-      document.title = HOME_TITLE
-    }
-  }, [title])
+export default function ComingSoon({ title, message = 'Coming soon' }) {
+  useDocumentTitle(`${title} — Coming Soon | SnapBiz`)
 
   return (
     <main className="relative flex min-h-screen items-center overflow-hidden bg-forest">
@@ -52,7 +46,7 @@ export default function ComingSoon({ title }) {
           transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
           className="mt-5 max-w-xl text-base leading-relaxed text-ivory/70 sm:text-lg"
         >
-          Coming soon
+          {message}
         </motion.p>
       </div>
     </main>
