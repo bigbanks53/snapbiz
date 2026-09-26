@@ -10,9 +10,12 @@ const NAV_LINKS = [
   { label: 'Consultants', href: '#consultants' },
 ]
 
+// On sub-pages (e.g. /idea) anchors are prefixed so they resolve on the home page.
+const withBase = (href, base = '') => `${base}${href}`
+
 const EASE = [0.22, 1, 0.36, 1]
 
-export default function Navbar() {
+export default function Navbar({ linkBase = '' }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -51,7 +54,7 @@ export default function Navbar() {
       >
         {/* Logo */}
         <a
-          href="#home"
+          href={withBase('#home', linkBase)}
           onClick={() => setOpen(false)}
           className="flex items-center gap-2.5"
           aria-label="SnapBiz home"
@@ -85,13 +88,13 @@ export default function Navbar() {
         {/* Right actions */}
         <div className="hidden items-center gap-6 lg:flex">
           <a
-            href="#login"
+            href={withBase('#login', linkBase)}
             className="text-sm font-medium text-ivory/70 transition-colors hover:text-ivory"
           >
             Log in
           </a>
           <a
-            href="#get-started"
+            href={withBase('#get-started', linkBase)}
             className="rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-forest-deep transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime/90"
           >
             Get Started
@@ -140,14 +143,14 @@ export default function Navbar() {
             </ul>
             <div className="flex items-center gap-3 border-t border-ivory/10 px-5 py-5 sm:px-8">
               <a
-                href="#login"
+                href={withBase('#login', linkBase)}
                 onClick={() => setOpen(false)}
                 className="flex-1 rounded-full border border-ivory/25 px-5 py-3 text-center text-sm font-semibold text-ivory transition-colors hover:bg-ivory/5"
               >
                 Log in
               </a>
               <a
-                href="#get-started"
+                href={withBase('#get-started', linkBase)}
                 onClick={() => setOpen(false)}
                 className="flex-1 rounded-full bg-lime px-5 py-3 text-center text-sm font-semibold text-forest-deep"
               >
