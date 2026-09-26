@@ -192,7 +192,7 @@ export default function Hero() {
             <MotionLink
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              to="/discover"
+              to="/get-started"
               className="inline-flex items-center justify-center rounded-full border border-ivory/25 px-7 py-3.5 text-sm font-semibold text-ivory transition-colors hover:border-ivory/50 hover:bg-ivory/5 sm:text-base"
             >
               Help Me Find a Business

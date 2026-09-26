@@ -227,7 +227,7 @@ export default function StartingPaths() {
 
               <div className="mt-auto pt-10">
                 <Link
-                  to="/discover"
+                  to="/get-started"
                   className="group/cta inline-flex w-full items-center justify-between gap-3 rounded-full border border-ink/15 bg-forest-deep px-2 py-2 pl-7 text-[0.95rem] font-semibold text-ivory transition-all duration-300 hover:border-ink/25 hover:bg-forest sm:w-auto sm:justify-start"
                 >
                   <span>Find What Fits Me</span>

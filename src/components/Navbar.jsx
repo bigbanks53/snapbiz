@@ -105,7 +105,7 @@ export default function Navbar() {
             Log in
           </NavLink>
           <Link
-            to="/discover"
+            to="/get-started"
             className="rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-forest-deep transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime/90"
           >
             Get Started
@@ -165,7 +165,7 @@ export default function Navbar() {
                 Log in
               </NavLink>
               <Link
-                to="/discover"
+                to="/get-started"
                 onClick={() => setOpen(false)}
                 className="flex-1 rounded-full bg-lime px-5 py-3 text-center text-sm font-semibold text-forest-deep"
               >

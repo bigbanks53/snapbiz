@@ -2,6 +2,7 @@ import { MotionConfig } from 'framer-motion'
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import ScrollToTop from './components/ScrollToTop'
+import LegacyHashRedirect from './components/LegacyHashRedirect'
 import Home from './pages/Home'
 import Idea from './pages/Idea'
 import Discover from './pages/Discover'
@@ -10,12 +11,14 @@ import Learn from './pages/Learn'
 import Services from './pages/Services'
 import Consultants from './pages/Consultants'
 import Login from './pages/Login'
+import GetStarted from './pages/GetStarted'
 import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <ScrollToTop />
+      <LegacyHashRedirect />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -26,6 +29,7 @@ export default function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/consultants" element={<Consultants />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/get-started" element={<GetStarted />} />
         {/* Only genuinely unknown URLs land here — every real route renders its own page. */}
         <Route path="*" element={<NotFound />} />
       </Routes>
