@@ -11,6 +11,7 @@ const COLUMNS = [
       { label: 'How It Works', to: '/how-it-works' },
       { label: 'Learn', to: '/learn' },
       { label: 'Services', to: '/services' },
+      { label: 'Consultants', to: '/consultants' },
     ],
   },
   { title: 'Company', links: [{ label: 'About' }, { label: 'Contact' }, { label: 'Resources' }] },
