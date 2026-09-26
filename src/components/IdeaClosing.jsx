@@ -1,7 +1,10 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { BellRing } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ArrowRight, BellRing } from 'lucide-react'
 
 const EASE = [0.22, 1, 0.36, 1]
+
+const MotionLink = motion.create(Link)
 
 export default function IdeaClosing() {
   const reduceMotion = useReducedMotion()
@@ -66,16 +69,28 @@ export default function IdeaClosing() {
         </motion.p>
 
         <motion.div {...rise(0.24)} className="mt-10 flex flex-col items-center gap-4">
-          <motion.button
-            type="button"
-            whileHover={reduceMotion ? undefined : { y: -2 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            className="inline-flex items-center justify-center gap-2.5 rounded-full bg-lime px-8 py-4 text-sm font-bold text-forest-deep shadow-[0_12px_36px_-8px_rgba(217,244,58,0.35)] transition-colors hover:bg-lime/90 sm:text-base"
-            aria-label="Notify me when idea validation launches (preview only — sign-ups are not open yet)"
-          >
-            <BellRing size={17} strokeWidth={2.25} aria-hidden="true" />
-            Notify Me When This Launches
-          </motion.button>
+          <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <MotionLink
+              to="/get-started"
+              whileHover={reduceMotion ? undefined : { y: -2 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+              className="inline-flex items-center justify-center gap-2.5 rounded-full bg-lime px-8 py-4 text-sm font-bold text-forest-deep shadow-[0_12px_36px_-8px_rgba(217,244,58,0.35)] transition-colors hover:bg-lime/90 sm:text-base"
+            >
+              Get Started
+              <ArrowRight size={17} strokeWidth={2.25} aria-hidden="true" />
+            </MotionLink>
+
+            <motion.button
+              type="button"
+              whileHover={reduceMotion ? undefined : { y: -2 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+              className="inline-flex items-center justify-center gap-2.5 rounded-full bg-lime px-8 py-4 text-sm font-bold text-forest-deep shadow-[0_12px_36px_-8px_rgba(217,244,58,0.35)] transition-colors hover:bg-lime/90 sm:text-base"
+              aria-label="Notify me when idea validation launches (preview only — sign-ups are not open yet)"
+            >
+              <BellRing size={17} strokeWidth={2.25} aria-hidden="true" />
+              Notify Me When This Launches
+            </motion.button>
+          </div>
 
           <p className="text-[11px] font-medium text-ivory/40 sm:text-xs">
             Preview build — notifications aren&apos;t open yet, so this button isn&apos;t
