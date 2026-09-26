@@ -4,6 +4,8 @@ import { ArrowRight, Lightbulb } from 'lucide-react'
 
 const EASE = [0.22, 1, 0.36, 1]
 
+const MotionLink = motion.create(Link)
+
 export default function DiscoverClosing() {
   const reduceMotion = useReducedMotion()
 
@@ -60,8 +62,8 @@ export default function DiscoverClosing() {
         </motion.h2>
 
         <motion.div {...rise(0.16)} className="mt-10 flex flex-col items-center gap-4">
-          <motion.button
-            type="button"
+          <MotionLink
+            to="/get-started"
             aria-describedby="discover-closing-note"
             whileHover={reduceMotion ? undefined : { y: -2 }}
             whileTap={reduceMotion ? undefined : { scale: 0.98 }}
@@ -69,14 +71,14 @@ export default function DiscoverClosing() {
           >
             Start Discovering
             <ArrowRight size={17} strokeWidth={2.25} aria-hidden="true" />
-          </motion.button>
+          </MotionLink>
 
           <p
             id="discover-closing-note"
             className="text-[11px] font-medium text-ivory/40 sm:text-xs"
           >
-            Preview build — discovery isn&apos;t open yet, so this button isn&apos;t connected to
-            anything.
+            Routes to Get Started — the full discovery experience and sign-up flow aren&apos;t
+            open yet.
           </p>
         </motion.div>
 

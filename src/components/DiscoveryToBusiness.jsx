@@ -1,5 +1,4 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import {
   ArrowRight,
   BookOpen,
@@ -22,8 +21,6 @@ const PATH_STEPS = [
   { label: 'Set up your business', icon: Briefcase },
   { label: 'Launch', icon: Rocket },
 ]
-
-const MotionLink = motion.create(Link)
 
 export default function DiscoveryToBusiness() {
   const reduceMotion = useReducedMotion()
@@ -188,17 +185,6 @@ export default function DiscoveryToBusiness() {
           {...reveal(0.18)}
           className="mt-12 flex flex-col items-center gap-4 text-center"
         >
-          <MotionLink
-            to="/get-started"
-            whileHover={reduceMotion ? undefined : { y: -2 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            className="group inline-flex items-center justify-between gap-4 rounded-full bg-lime px-2 py-2 pl-8 font-display text-base font-bold text-forest-deep shadow-[0_12px_36px_-8px_rgba(217,244,58,0.35)] transition-all duration-300 hover:bg-lime/90 hover:shadow-[0_16px_44px_-6px_rgba(217,244,58,0.5)] sm:text-lg"
-          >
-            Discover Your Options
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-forest-deep text-lime transition-transform duration-300 group-hover:translate-x-0.5">
-              <ArrowRight size={18} strokeWidth={2.4} aria-hidden="true" />
-            </span>
-          </MotionLink>
           <p className="max-w-md text-xs font-medium leading-relaxed text-ivory/50 sm:text-sm">
             Routes to Get Started — the full discovery experience and sign-up flow aren&apos;t
             open yet.
